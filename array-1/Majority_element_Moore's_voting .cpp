@@ -86,3 +86,40 @@ int main(){
     return 0;
 }
 
+
+
+DROP TABLE emp_temp;
+
+CREATE TABLE emp_temp AS
+  SELECT employee_id,
+         first_name,
+         last_name,
+		 department_id,
+         salary
+  FROM   employees;
+
+
+
+
+
+DECLARE
+    CURSOR employee_cur IS
+      SELECT employee_id,
+             salary
+      FROM   emp_temp
+      WHERE  department_id = 50
+      FOR UPDATE;
+    incr_sal NUMBER;
+BEGIN
+    FOR employee_rec IN employee_cur LOOP
+        IF employee_rec.salary < 15000 THEN
+          incr_sal := .15;
+        ELSE
+          incr_sal := .10;
+        END IF;
+
+        UPDATE emp_temp
+        SET    salary = salary + salary * incr_sal
+        WHERE  CURRENT OF employee_cur;
+    END LOOP;
+END;
