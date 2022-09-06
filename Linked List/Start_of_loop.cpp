@@ -36,6 +36,8 @@ ListNode *detectCycle(ListNode *head) {
         
     }
 
+
+
 int main(){
 	vector<int> v = {1,2,3,4,7,5,4};
 	int n = 7;
