@@ -42,6 +42,22 @@ void bitManip(vector<int> nums){
 	return ans;
 }
 
+// Iterative Way :
+
+vector<vector<int>> subsets(vector<int>& nums) {
+        
+        vector<vector<int>> ans = {{}};
+        
+        for(int num : nums){
+            int n = ans.size();
+            for(int i=0;i<n;i++){
+                ans.push_back(ans[i]);
+                ans.back().push_back(num);
+            }
+        }
+        return ans;
+    }
+
 
 int main(){
 	vector<int> nums = {1,2,3};
