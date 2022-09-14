@@ -23,6 +23,39 @@ void flatten(TreeNode* root) {
         
     }
 
+TreeNode* prev = NULL;
+    void flatten(TreeNode* root) {    
+        if(root == NULL) return;
+        
+        flatten(root->right);
+        flatten(root->left);
+        root->right = prev;
+        root->left = NULL;
+        
+        prev = root;
+
+    }
+
+
+    void flatten(TreeNode* root) {
+        TreeNode* cur = root;
+        while (cur!=NULL)//morris traversal
+        {
+            if(cur->left!=NULL)
+            {
+                TreeNode* pre = cur->left;
+                while(pre->right!=NULL)
+                {
+                    pre = pre->right;
+                }
+                pre->right = cur->right;
+                cur->right = cur->left;
+                cur->left = NULL;
+            }
+            cur = cur->right;//will go to cur->left bcoz of cur->right = cur->left; this
+        }
+     }
+     
 
 int main(){
 	vector<int> v = {1,2,3,4,7,5,4};

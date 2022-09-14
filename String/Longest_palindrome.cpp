@@ -34,7 +34,7 @@ string help(string s, int i, int j){
 
 
 int main(){
-	
+    
 
     return 0;
 }
